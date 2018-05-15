@@ -1,0 +1,120 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Responsive Table</title>
+        <style type="text/css">
+            @import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
+            @media screen and (max-width: 767px) {
+                thead {
+                    display: none;
+                }
+
+                tr {
+                    display: block;
+                    position: relative;
+                    padding: 1.2em 0;
+                }
+                tr:first-of-type {
+                    border-top: 1px solid #ccc;
+                }
+
+                td {
+                    display: table-row;
+                }
+                td:before {
+                    content: attr(data-label);
+                    display: table-cell;
+                    font-weight: bold;
+                    padding: 0.2em 0.6em 0.2em 0;
+                    text-align: right;
+                }
+                td:last-child:after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    border-bottom: 1px solid #ccc;
+                }
+                }
+                body {
+                padding: 5%;
+                font-family: "Montserrat", sans-serif;
+                font-weight: 500;
+                line-height: 1.35;
+                }
+
+                h1 {
+                font-size: 1.8em;
+                margin-bottom: 0.8em;
+                }
+
+                table {
+                margin-bottom: 2em;
+                text-align: left;
+                }
+
+                @media screen and (min-width: 768px) {
+                body {
+                    padding: 2.5em;
+                }
+
+                td, th {
+                    padding: 0.4em 0.6em;
+                    vertical-align: top;
+                    border: 1px solid #ccc;
+                }
+
+                th {
+                    background: #e1e1e1;
+                    font-weight: bold;
+                }
+                }
+        </style>
+    </head>
+    <body>
+        <h1>Responsive Table</h1>
+        <table class='js-table-data'>
+        <thead>
+            <tr>
+            <th>Company</th>
+            <th>Location</th>
+            <th>Description</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>Acme Company, LLC</td>
+            <td>Denver, CO</td>
+            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos necessitatibus obcaecati quibusdam.</td>
+        </tr>
+        <tr>
+            <td>Simple Corp</td>
+            <td>Austin, TX</td>
+            <td>Mollitia veritatis commodi deleniti provident quasi neque illum ipsa consequatur ullam facere, quidem minus nesciunt maxime architecto.</td>
+        </tr>
+        <tr>
+            <td>ABC Generic Company</td>
+            <td>Seattle, WA</td>
+            <td>Nihil officia natus voluptas, at quasi impedit animi enim doloremque architecto.</td>
+        </tr>
+        </table>
+        <p>
+        Blog post and instructions:
+        <a>https://j.eremy.net/responsive-table/</a>
+        </p>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('.js-table-data td').each(function(){
+                    var tdIndex = $(this).index();
+                    if ($('tr').find('th').eq(tdIndex).attr('data-label')) {
+                    var thText = $('tr').find('th').eq(tdIndex).data('label');
+                    } else {
+                    var thText = $('tr').find('th').eq(tdIndex).text();
+                    }
+                    $(this).attr('data-label', thText + ':');
+                });
+            })
+        </script>
+    </body>
+</html>
